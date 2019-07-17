@@ -4,39 +4,38 @@
 
 `timescale 1 ps / 1 ps
 module soc (
-		input  wire        clk_clk,            //          clk.clk
-		input  wire [31:0] hps_f2h_irq0_irq,   // hps_f2h_irq0.irq
-		input  wire [10:0] mem1_s1_address,    //      mem1_s1.address
-		input  wire        mem1_s1_clken,      //             .clken
-		input  wire        mem1_s1_chipselect, //             .chipselect
-		input  wire        mem1_s1_write,      //             .write
-		output wire [15:0] mem1_s1_readdata,   //             .readdata
-		input  wire [15:0] mem1_s1_writedata,  //             .writedata
-		input  wire [1:0]  mem1_s1_byteenable, //             .byteenable
-		input  wire [10:0] mem2_s1_address,    //      mem2_s1.address
-		input  wire        mem2_s1_clken,      //             .clken
-		input  wire        mem2_s1_chipselect, //             .chipselect
-		input  wire        mem2_s1_write,      //             .write
-		output wire [15:0] mem2_s1_readdata,   //             .readdata
-		input  wire [15:0] mem2_s1_writedata,  //             .writedata
-		input  wire [1:0]  mem2_s1_byteenable, //             .byteenable
-		output wire [14:0] memory_mem_a,       //       memory.mem_a
-		output wire [2:0]  memory_mem_ba,      //             .mem_ba
-		output wire        memory_mem_ck,      //             .mem_ck
-		output wire        memory_mem_ck_n,    //             .mem_ck_n
-		output wire        memory_mem_cke,     //             .mem_cke
-		output wire        memory_mem_cs_n,    //             .mem_cs_n
-		output wire        memory_mem_ras_n,   //             .mem_ras_n
-		output wire        memory_mem_cas_n,   //             .mem_cas_n
-		output wire        memory_mem_we_n,    //             .mem_we_n
-		output wire        memory_mem_reset_n, //             .mem_reset_n
-		inout  wire [31:0] memory_mem_dq,      //             .mem_dq
-		inout  wire [3:0]  memory_mem_dqs,     //             .mem_dqs
-		inout  wire [3:0]  memory_mem_dqs_n,   //             .mem_dqs_n
-		output wire        memory_mem_odt,     //             .mem_odt
-		output wire [3:0]  memory_mem_dm,      //             .mem_dm
-		input  wire        memory_oct_rzqin,   //             .oct_rzqin
-		input  wire        reset_reset_n       //        reset.reset_n
+		input  wire        clk_clk,            //     clk.clk
+		input  wire [10:0] mem1_s1_address,    // mem1_s1.address
+		input  wire        mem1_s1_clken,      //        .clken
+		input  wire        mem1_s1_chipselect, //        .chipselect
+		input  wire        mem1_s1_write,      //        .write
+		output wire [15:0] mem1_s1_readdata,   //        .readdata
+		input  wire [15:0] mem1_s1_writedata,  //        .writedata
+		input  wire [1:0]  mem1_s1_byteenable, //        .byteenable
+		input  wire [10:0] mem2_s1_address,    // mem2_s1.address
+		input  wire        mem2_s1_clken,      //        .clken
+		input  wire        mem2_s1_chipselect, //        .chipselect
+		input  wire        mem2_s1_write,      //        .write
+		output wire [15:0] mem2_s1_readdata,   //        .readdata
+		input  wire [15:0] mem2_s1_writedata,  //        .writedata
+		input  wire [1:0]  mem2_s1_byteenable, //        .byteenable
+		output wire [14:0] memory_mem_a,       //  memory.mem_a
+		output wire [2:0]  memory_mem_ba,      //        .mem_ba
+		output wire        memory_mem_ck,      //        .mem_ck
+		output wire        memory_mem_ck_n,    //        .mem_ck_n
+		output wire        memory_mem_cke,     //        .mem_cke
+		output wire        memory_mem_cs_n,    //        .mem_cs_n
+		output wire        memory_mem_ras_n,   //        .mem_ras_n
+		output wire        memory_mem_cas_n,   //        .mem_cas_n
+		output wire        memory_mem_we_n,    //        .mem_we_n
+		output wire        memory_mem_reset_n, //        .mem_reset_n
+		inout  wire [31:0] memory_mem_dq,      //        .mem_dq
+		inout  wire [3:0]  memory_mem_dqs,     //        .mem_dqs
+		inout  wire [3:0]  memory_mem_dqs_n,   //        .mem_dqs_n
+		output wire        memory_mem_odt,     //        .mem_odt
+		output wire [3:0]  memory_mem_dm,      //        .mem_dm
+		input  wire        memory_oct_rzqin,   //        .oct_rzqin
+		input  wire        reset_reset_n       //   reset.reset_n
 	);
 
 	wire   [1:0] hps_h2f_axi_master_awburst;           // hps:h2f_AWBURST -> mm_interconnect_0:hps_h2f_axi_master_awburst
@@ -89,7 +88,8 @@ module soc (
 	wire         mm_interconnect_0_mem2_s2_write;      // mm_interconnect_0:mem2_s2_write -> mem2:write2
 	wire  [31:0] mm_interconnect_0_mem2_s2_writedata;  // mm_interconnect_0:mem2_s2_writedata -> mem2:writedata2
 	wire         mm_interconnect_0_mem2_s2_clken;      // mm_interconnect_0:mem2_s2_clken -> mem2:clken2
-	wire  [31:0] hps_f2h_irq1_irq;                     // irq_mapper:sender_irq -> hps:f2h_irq_p1
+	wire  [31:0] hps_f2h_irq0_irq;                     // irq_mapper:sender_irq -> hps:f2h_irq_p0
+	wire  [31:0] hps_f2h_irq1_irq;                     // irq_mapper_001:sender_irq -> hps:f2h_irq_p1
 	wire         rst_controller_reset_out_reset;       // rst_controller:reset_out -> [mem1:reset, mem2:reset, mm_interconnect_0:mem1_reset1_reset_bridge_in_reset_reset]
 	wire         rst_controller_reset_out_reset_req;   // rst_controller:reset_req -> [mem1:reset_req, mem2:reset_req]
 	wire         rst_controller_001_reset_out_reset;   // rst_controller_001:reset_out -> mm_interconnect_0:hps_h2f_axi_master_agent_clk_reset_reset_bridge_in_reset_reset
@@ -369,6 +369,12 @@ module soc (
 	);
 
 	soc_irq_mapper irq_mapper (
+		.clk        (),                 //       clk.clk
+		.reset      (),                 // clk_reset.reset
+		.sender_irq (hps_f2h_irq0_irq)  //    sender.irq
+	);
+
+	soc_irq_mapper irq_mapper_001 (
 		.clk        (),                 //       clk.clk
 		.reset      (),                 // clk_reset.reset
 		.sender_irq (hps_f2h_irq1_irq)  //    sender.irq

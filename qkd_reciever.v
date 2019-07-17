@@ -81,13 +81,13 @@ module qkd_reciever(
 
 wire hps_reset, counter_reset;
 
-reg [31:0] interrupt_req_reg;
+//reg [31:0] interrupt_req_reg;
 
 wire tt_we;
 wire [13:0] counter_output;
 wire [1:0] encoder_output;
 reg [15:0] time_tagger_register;
-reg [7:0] tt_ram_address;
+reg [12:0] tt_ram_address;
 
 
 wire [15:0] tt_ram_output_1;
@@ -97,7 +97,14 @@ wire ram_2_be = 0;
 reg ram_1_cs = 0;
 reg ram_2_cs = 0;
 
+//=======================================================
+//  Simulator declartions
+//=======================================================
 
+//reg [7:0] sim_count_reg;
+//wire read_en = 1;
+//wire enable = 1;
+//wire disabled = 0;
 
 //=======================================================
 //  Structural coding
@@ -127,22 +134,37 @@ soc u0 (
 
 	// Memory system
 	.mem1_s1_address    (tt_ram_address),    	// mem1_s1.address
-	.mem1_s1_clken      ('b1),      			//        .clken
+	.mem1_s1_clken      (enable),      			//        .clken
 	.mem1_s1_chipselect (ram_1_cs), 			//        .chipselect
 	.mem1_s1_write      (tt_we),      			//        .write
 	.mem1_s1_readdata   (tt_ram_output_1),   	//        .readdata
 	.mem1_s1_writedata  (time_tagger_register), //        .writedata
-	.mem1_s1_byteenable (ram_1_be), 			//        .byteenable
+	.mem1_s1_byteenable (disabled), 			//        .byteenable
+
 	.mem2_s1_address    (tt_ram_address),    	// mem2_s1.address
-	.mem2_s1_clken      ('b1),      			//        .clken
+	.mem2_s1_clken      (enable),      			//        .clken
 	.mem2_s1_chipselect (ram_2_cs), 			//        .chipselect
 	.mem2_s1_write      (tt_we),      			//        .write
 	.mem2_s1_readdata   (tt_ram_output_2),   	//        .readdata
 	.mem2_s1_writedata  (time_tagger_register), //        .writedata
-	.mem2_s1_byteenable (ram_2_be),  			//        .byteenable
+	.mem2_s1_byteenable (disabled)  			//        .byteenable
 	
-	.hps_f2h_irq0_irq   (interrupt_req_reg)    	// hps_f2h_irq0.irq
+	// .hps_f2h_irq0_irq   (interrupt_req_reg)    	// hps_f2h_irq0.irq
 );
+
+//========================= reciever simulator module =================================
+
+// word_generator gen_0(
+// 	.clk(FPGA_CLK1_50),
+// 	.read_enable(read_en),
+// 	.out(counter_output)
+// );
+
+// always @(posedge FPGA_CLK1_50) begin
+// 	sim_count_reg <= sim_count_reg + 1;
+// end
+
+//========================= module end ================================================
 
 //========================= reciever module =================================
 upcounter #(14) counter_1(
@@ -158,34 +180,31 @@ reciever_encoding_module encoder_1(
 	.pulse_detected(tt_we)
 );
 
+
+// WRITE routine :  This routine is responsible for monitoring the write enable signal and
+// transfering the output from input -> time_tagger -> ram modules
 always @(posedge FPGA_CLK1_50 ) begin
 	if (tt_we) begin
 		tt_ram_address <= tt_ram_address + 1;
 		time_tagger_register <= { encoder_output, counter_output };
 	end
 
-	// when the tt reg reaches max shift the chip select to the next one
-	if (time_tagger_register == 4'hffff) begin
+	// when the TT Ram address reaches max shift the chip select to the next one, and send IRQ request
+	if (tt_ram_address == 'h1fff) begin
 		if (ram_1_cs == 1) begin
 			ram_1_cs <= 0;
 			ram_2_cs <= 1;
+			// interrupt_req_reg <= 30;
 		end else begin
 			ram_1_cs <= 1;
 			ram_2_cs <= 0;
+			// interrupt_req_reg <= 32;		
 		end
-	end
+	end	
+	// else begin
+	// 	interrupt_req_reg <= 0;
+	// end
 
-	// when the tt reg reaches max send an IRQ request to HPS
-	if (time_tagger_register == 4'hffff) begin
-		if (ram_1_cs == 1) begin
-			interrupt_req_reg <= 30;
-		end else begin
-			interrupt_req_reg <= 32;		
-		end
-	end
-	else begin
-		interrupt_req_reg <= 0;
-	end
 end
 
 //========================= reciever module ends here =================================

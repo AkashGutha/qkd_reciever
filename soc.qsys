@@ -40,6 +40,11 @@
          value = "1";
          type = "boolean";
       }
+      datum baseAddress
+      {
+         value = "0";
+         type = "String";
+      }
    }
    element mem2
    {
@@ -51,6 +56,11 @@
    }
    element mem2.s2
    {
+      datum _lockedAddress
+      {
+         value = "1";
+         type = "boolean";
+      }
       datum baseAddress
       {
          value = "4096";
@@ -79,11 +89,6 @@
  <parameter name="useTestBenchNamingPattern" value="false" />
  <instanceScript></instanceScript>
  <interface name="clk" internal="clk.clk_in" type="clock" dir="end" />
- <interface
-   name="hps_f2h_irq0"
-   internal="hps.f2h_irq0"
-   type="interrupt"
-   dir="start" />
  <interface name="mem1_s1" internal="mem1.s1" type="avalon" dir="end" />
  <interface name="mem2_s1" internal="mem2.s1" type="avalon" dir="end" />
  <interface name="memory" internal="hps.memory" type="conduit" dir="end" />

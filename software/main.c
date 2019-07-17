@@ -30,26 +30,12 @@ double cpu_time_used;
 FILE *file;
 UINT32 buffer[256];
 
+// file descriptor
+int fd;
+unsigned int i = 0;
+
 int main(int argc, char const *argv[])
 {
-    // file descriptor
-    int fd;
-    unsigned int i = 0;
-
-    // get the file path from arguments and open the file
-    if (argc != 2)
-    {
-        printf("Please pass in 2 arguments instead of %d arguments\r\n", argc);
-        return -1;
-    }
-    file = fopen(argv[1], "w+");
-
-    if (file == NULL)
-    {
-        printf("ERROR: Opening the file at %s \r\nError code: %d \r\n", argv[1], errno);
-        return -1;
-    }
-
     // OPEN "/dev/mem" -> Map the device peripherals into a linux vbase
     fd = open("/dev/mem", (O_RDWR | O_SYNC));
     if (fd == -1)
@@ -79,15 +65,35 @@ int main(int argc, char const *argv[])
     }
 
     //-------------------------------------------------------------
-    // Write the incoming data using the interrupts 
+    // File open/create process
+    //-------------------------------------------------------------
+    errno = 0;
+
+    // get the file path from arguments and open the file
+    if (argc != 2)
+    {
+        printf("Please pass in 2 arguments instead of %d arguments\r\n", argc);
+        return -1;
+    }
+    file = fopen(argv[1], "w+");
+
+    if (file == NULL)
+    {
+        printf("ERROR: Opening the file at %s \r\nError code: %d \r\n", argv[1], errno);
+        return -1;
+    }
+
+    //-------------------------------------------------------------
+    // Write the incoming data using the interrupts
     //-------------------------------------------------------------
 
     mem1_bank_on_axi_base = h2p_hw_axi_vbase + ((ULONG)MEM1_BASE & (ULONG)HW_FPGA_AXI_MASK);
     mem2_bank_on_axi_base = h2p_hw_axi_vbase + ((ULONG)MEM2_BASE & (ULONG)HW_FPGA_AXI_MASK);
 
-    while (true)
+    for (i = 0; i < 1000; i++)
     {
-        
+        fwrite( (UP32)mem1_bank_on_axi_base, sizeof(UINT16), 4096, file);
+        fwrite( (UP32)mem2_bank_on_axi_base, sizeof(UINT16), 4096, file);
     }
 
     //-------------------------------------------------------------

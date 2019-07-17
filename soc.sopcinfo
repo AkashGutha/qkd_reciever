@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EnsembleReport name="soc" kind="soc" version="1.0" fabric="QSYS">
  <!-- Format version 18.1 625 (Future versions may contain additional information.) -->
- <!-- 2019.07.16.16:25:41 -->
+ <!-- 2019.07.17.16:41:38 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
-  <value>1563308741</value>
+  <value>1563396097</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -77,16 +77,6 @@
   <valid>true</valid>
   <sysinfo_type>RESET_DOMAIN</sysinfo_type>
   <sysinfo_arg>clk</sysinfo_arg>
- </parameter>
- <parameter name="AUTO_HPS_F2H_IRQ0_INTERRUPTS_USED">
-  <type>java.math.BigInteger</type>
-  <value>-1</value>
-  <derived>false</derived>
-  <enabled>true</enabled>
-  <visible>false</visible>
-  <valid>true</valid>
-  <sysinfo_type>INTERRUPTS_USED</sysinfo_type>
-  <sysinfo_arg>hps_f2h_irq0</sysinfo_arg>
  </parameter>
  <parameter name="deviceFamily">
   <type>java.lang.String</type>
