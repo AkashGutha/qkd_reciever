@@ -90,11 +90,21 @@ int main(int argc, char const *argv[])
     mem1_bank_on_axi_base = h2p_hw_axi_vbase + ((ULONG)MEM1_BASE & (ULONG)HW_FPGA_AXI_MASK);
     mem2_bank_on_axi_base = h2p_hw_axi_vbase + ((ULONG)MEM2_BASE & (ULONG)HW_FPGA_AXI_MASK);
 
-    for (i = 0; i < 1000; i++)
+    for (i = 0; i < MEM1_SPAN; i++)
     {
-        fwrite( (UP32)mem1_bank_on_axi_base, sizeof(UINT16), 4096, file);
-        fwrite( (UP32)mem2_bank_on_axi_base, sizeof(UINT16), 4096, file);
+        *((UP32)mem1_bank_on_axi_base + i) = rand();
+        *((UP32)mem2_bank_on_axi_base + i) = rand();
     }
+
+    start = clock();
+    for (i = 0; i < 100; i++)
+    {
+        fwrite( (UP32)mem1_bank_on_axi_base, sizeof(UINT16), MEM1_SPAN, file);
+        fwrite( (UP32)mem2_bank_on_axi_base, sizeof(UINT16), MEM2_SPAN, file);
+    }
+    end = clock();
+
+    printf("%.f\r\n", ((double)end-start));
 
     //-------------------------------------------------------------
     // clean up our memory mapping and exit

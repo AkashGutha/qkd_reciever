@@ -46,14 +46,14 @@ module soc_mm_interconnect_0 (
 		input  wire        clk_clk_clk,                                                    //                                                  clk_clk.clk
 		input  wire        hps_h2f_axi_master_agent_clk_reset_reset_bridge_in_reset_reset, // hps_h2f_axi_master_agent_clk_reset_reset_bridge_in_reset.reset
 		input  wire        mem1_reset1_reset_bridge_in_reset_reset,                        //                        mem1_reset1_reset_bridge_in_reset.reset
-		output wire [9:0]  mem1_s2_address,                                                //                                                  mem1_s2.address
+		output wire [11:0] mem1_s2_address,                                                //                                                  mem1_s2.address
 		output wire        mem1_s2_write,                                                  //                                                         .write
 		input  wire [31:0] mem1_s2_readdata,                                               //                                                         .readdata
 		output wire [31:0] mem1_s2_writedata,                                              //                                                         .writedata
 		output wire [3:0]  mem1_s2_byteenable,                                             //                                                         .byteenable
 		output wire        mem1_s2_chipselect,                                             //                                                         .chipselect
 		output wire        mem1_s2_clken,                                                  //                                                         .clken
-		output wire [9:0]  mem2_s2_address,                                                //                                                  mem2_s2.address
+		output wire [11:0] mem2_s2_address,                                                //                                                  mem2_s2.address
 		output wire        mem2_s2_write,                                                  //                                                         .write
 		input  wire [31:0] mem2_s2_readdata,                                               //                                                         .readdata
 		output wire [31:0] mem2_s2_writedata,                                              //                                                         .writedata
@@ -302,7 +302,7 @@ module soc_mm_interconnect_0 (
 	wire    [0:0] avalon_st_adapter_001_out_0_error;                   // avalon_st_adapter_001:out_0_error -> mem2_s2_agent:rdata_fifo_sink_error
 
 	altera_merlin_slave_translator #(
-		.AV_ADDRESS_W                   (10),
+		.AV_ADDRESS_W                   (12),
 		.AV_DATA_W                      (32),
 		.UAV_DATA_W                     (32),
 		.AV_BURSTCOUNT_W                (1),
@@ -366,7 +366,7 @@ module soc_mm_interconnect_0 (
 	);
 
 	altera_merlin_slave_translator #(
-		.AV_ADDRESS_W                   (10),
+		.AV_ADDRESS_W                   (12),
 		.AV_DATA_W                      (32),
 		.UAV_DATA_W                     (32),
 		.AV_BURSTCOUNT_W                (1),

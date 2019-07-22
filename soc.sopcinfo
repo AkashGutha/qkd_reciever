@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EnsembleReport name="soc" kind="soc" version="1.0" fabric="QSYS">
  <!-- Format version 18.1 625 (Future versions may contain additional information.) -->
- <!-- 2019.07.17.16:41:38 -->
+ <!-- 2019.07.22.16:41:29 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
-  <value>1563396097</value>
+  <value>1563828088</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -16084,15 +16084,15 @@ parameters are a RESULT of the module parameters. -->
     <slaveName>s2</slaveName>
     <name>mem1.s2</name>
     <baseAddress>0</baseAddress>
-    <span>4096</span>
+    <span>10240</span>
    </memoryBlock>
    <memoryBlock>
     <isBridge>false</isBridge>
     <moduleName>mem2</moduleName>
     <slaveName>s2</slaveName>
     <name>mem2.s2</name>
-    <baseAddress>4096</baseAddress>
-    <span>4096</span>
+    <baseAddress>16384</baseAddress>
+    <span>10240</span>
    </memoryBlock>
   </interface>
   <interface name="f2h_axi_clock" kind="clock_sink" version="18.1">
@@ -42849,15 +42849,15 @@ parameters are a RESULT of the module parameters. -->
     <slaveName>s2</slaveName>
     <name>mem1.s2</name>
     <baseAddress>0</baseAddress>
-    <span>4096</span>
+    <span>10240</span>
    </memoryBlock>
    <memoryBlock>
     <isBridge>false</isBridge>
     <moduleName>mem2</moduleName>
     <slaveName>s2</slaveName>
     <name>mem2.s2</name>
-    <baseAddress>4096</baseAddress>
-    <span>4096</span>
+    <baseAddress>16384</baseAddress>
+    <span>10240</span>
    </memoryBlock>
   </interface>
   <interface name="h2f_lw_axi_clock" kind="clock_sink" version="18.1">
@@ -45116,15 +45116,15 @@ parameters are a RESULT of the module parameters. -->
     <slaveName>s2</slaveName>
     <name>mem1.s2</name>
     <baseAddress>3221225472</baseAddress>
-    <span>4096</span>
+    <span>10240</span>
    </memoryBlock>
    <memoryBlock>
     <isBridge>false</isBridge>
     <moduleName>mem2</moduleName>
     <slaveName>s2</slaveName>
     <name>mem2.s2</name>
-    <baseAddress>3221229568</baseAddress>
-    <span>4096</span>
+    <baseAddress>3221241856</baseAddress>
+    <span>10240</span>
    </memoryBlock>
    <memoryBlock>
     <isBridge>true</isBridge>
@@ -45951,15 +45951,15 @@ parameters are a RESULT of the module parameters. -->
     <slaveName>s2</slaveName>
     <name>mem1.s2</name>
     <baseAddress>3221225472</baseAddress>
-    <span>4096</span>
+    <span>10240</span>
    </memoryBlock>
    <memoryBlock>
     <isBridge>false</isBridge>
     <moduleName>mem2</moduleName>
     <slaveName>s2</slaveName>
     <name>mem2.s2</name>
-    <baseAddress>3221229568</baseAddress>
-    <span>4096</span>
+    <baseAddress>3221241856</baseAddress>
+    <span>10240</span>
    </memoryBlock>
    <memoryBlock>
     <isBridge>true</isBridge>
@@ -73557,7 +73557,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.GUI_RAM_BLOCK_TYPE</name>
-   <value>AUTO</value>
+   <value>M10K</value>
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.INIT_CONTENTS_FILE</name>
@@ -73577,7 +73577,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.RAM_BLOCK_TYPE</name>
-   <value>AUTO</value>
+   <value>M10K</value>
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.READ_DURING_WRITE_MODE</name>
@@ -73593,7 +73593,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.SIZE_VALUE</name>
-   <value>4096</value>
+   <value>10240</value>
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.WRITABLE</name>
@@ -73645,7 +73645,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="blockType">
    <type>java.lang.String</type>
-   <value>AUTO</value>
+   <value>M10K</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -73725,7 +73725,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="memorySize">
    <type>long</type>
-   <value>4096</value>
+   <value>10240</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -73864,7 +73864,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="derived_set_addr_width">
    <type>int</type>
-   <value>11</value>
+   <value>13</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -73872,7 +73872,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="derived_set_addr_width2">
    <type>int</type>
-   <value>10</value>
+   <value>12</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -73896,7 +73896,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="derived_gui_ram_block_type">
    <type>java.lang.String</type>
-   <value>Automatic</value>
+   <value>M10K</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -73964,7 +73964,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="addressSpan">
     <type>java.math.BigInteger</type>
-    <value>4096</value>
+    <value>10240</value>
     <derived>true</derived>
     <enabled>true</enabled>
     <visible>false</visible>
@@ -74052,7 +74052,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="explicitAddressSpan">
     <type>java.math.BigInteger</type>
-    <value>4096</value>
+    <value>10240</value>
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>true</visible>
@@ -74263,7 +74263,7 @@ parameters are a RESULT of the module parameters. -->
    <port>
     <name>address</name>
     <direction>Input</direction>
-    <width>11</width>
+    <width>13</width>
     <role>address</role>
    </port>
    <port>
@@ -74341,7 +74341,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="addressSpan">
     <type>java.math.BigInteger</type>
-    <value>4096</value>
+    <value>10240</value>
     <derived>true</derived>
     <enabled>true</enabled>
     <visible>false</visible>
@@ -74429,7 +74429,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="explicitAddressSpan">
     <type>java.math.BigInteger</type>
-    <value>4096</value>
+    <value>10240</value>
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>true</visible>
@@ -74640,7 +74640,7 @@ parameters are a RESULT of the module parameters. -->
    <port>
     <name>address2</name>
     <direction>Input</direction>
-    <width>10</width>
+    <width>12</width>
     <role>address</role>
    </port>
    <port>
@@ -74838,7 +74838,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.SIZE_VALUE</name>
-   <value>4096</value>
+   <value>10240</value>
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.WRITABLE</name>
@@ -74970,7 +74970,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="memorySize">
    <type>long</type>
-   <value>4096</value>
+   <value>10240</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -75109,7 +75109,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="derived_set_addr_width">
    <type>int</type>
-   <value>11</value>
+   <value>13</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -75117,7 +75117,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="derived_set_addr_width2">
    <type>int</type>
-   <value>10</value>
+   <value>12</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -75209,7 +75209,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="addressSpan">
     <type>java.math.BigInteger</type>
-    <value>4096</value>
+    <value>10240</value>
     <derived>true</derived>
     <enabled>true</enabled>
     <visible>false</visible>
@@ -75297,7 +75297,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="explicitAddressSpan">
     <type>java.math.BigInteger</type>
-    <value>4096</value>
+    <value>10240</value>
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>true</visible>
@@ -75508,7 +75508,7 @@ parameters are a RESULT of the module parameters. -->
    <port>
     <name>address</name>
     <direction>Input</direction>
-    <width>11</width>
+    <width>13</width>
     <role>address</role>
    </port>
    <port>
@@ -75586,7 +75586,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="addressSpan">
     <type>java.math.BigInteger</type>
-    <value>4096</value>
+    <value>10240</value>
     <derived>true</derived>
     <enabled>true</enabled>
     <visible>false</visible>
@@ -75674,7 +75674,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="explicitAddressSpan">
     <type>java.math.BigInteger</type>
-    <value>4096</value>
+    <value>10240</value>
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>true</visible>
@@ -75885,7 +75885,7 @@ parameters are a RESULT of the module parameters. -->
    <port>
     <name>address2</name>
     <direction>Input</direction>
-    <width>10</width>
+    <width>12</width>
     <role>address</role>
    </port>
    <port>
@@ -86215,7 +86215,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x1000</value>
+   <value>0x4000</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>

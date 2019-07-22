@@ -34,14 +34,14 @@ module soc (
 	reset_reset_n);	
 
 	input		clk_clk;
-	input	[10:0]	mem1_s1_address;
+	input	[12:0]	mem1_s1_address;
 	input		mem1_s1_clken;
 	input		mem1_s1_chipselect;
 	input		mem1_s1_write;
 	output	[15:0]	mem1_s1_readdata;
 	input	[15:0]	mem1_s1_writedata;
 	input	[1:0]	mem1_s1_byteenable;
-	input	[10:0]	mem2_s1_address;
+	input	[12:0]	mem2_s1_address;
 	input		mem2_s1_clken;
 	input		mem2_s1_chipselect;
 	input		mem2_s1_write;

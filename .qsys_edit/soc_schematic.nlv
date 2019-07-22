@@ -55,13 +55,13 @@ preplace inst soc.mem2 -pg 1 -lvl 3 -y 280
 preplace inst soc.hps.dcan1 -pg 1
 preplace inst soc.hps.gpio0 -pg 1
 preplace inst soc.hps.hps_io -pg 1
-preplace netloc EXPORT<net_container>soc</net_container>(SLAVE)clk.clk_in_reset,(SLAVE)soc.reset) 1 0 1 NJ
-preplace netloc FAN_OUT<net_container>soc</net_container>(SLAVE)mem1.reset1,(SLAVE)mem2.reset1,(MASTER)clk.clk_reset) 1 1 2 NJ 250 620
-preplace netloc FAN_OUT<net_container>soc</net_container>(SLAVE)mem1.clk1,(SLAVE)mem2.clk1,(SLAVE)hps.f2h_sdram0_clock,(SLAVE)hps.h2f_lw_axi_clock,(SLAVE)hps.f2h_axi_clock,(MASTER)clk.clk,(SLAVE)hps.h2f_axi_clock) 1 1 2 290 270 660
-preplace netloc FAN_OUT<net_container>soc</net_container>(SLAVE)mem2.s2,(MASTER)hps.h2f_axi_master,(SLAVE)mem1.s2) 1 2 1 640
-preplace netloc EXPORT<net_container>soc</net_container>(SLAVE)soc.memory,(SLAVE)hps.memory) 1 0 2 NJ 180 NJ
-preplace netloc EXPORT<net_container>soc</net_container>(SLAVE)mem1.s1,(SLAVE)soc.mem1_s1) 1 0 3 NJ 200 NJ 230 NJ
-preplace netloc EXPORT<net_container>soc</net_container>(SLAVE)soc.clk,(SLAVE)clk.clk_in) 1 0 1 NJ
-preplace netloc EXPORT<net_container>soc</net_container>(SLAVE)mem2.s1,(SLAVE)soc.mem2_s1) 1 0 3 NJ 330 NJ 330 NJ
+preplace netloc EXPORT<net_container>soc</net_container>(SLAVE)soc.mem2_s1,(SLAVE)mem2.s1) 1 0 3 NJ 330 NJ 330 NJ
+preplace netloc EXPORT<net_container>soc</net_container>(SLAVE)soc.mem1_s1,(SLAVE)mem1.s1) 1 0 3 NJ 200 NJ 230 NJ
+preplace netloc FAN_OUT<net_container>soc</net_container>(SLAVE)mem1.s2,(MASTER)hps.h2f_axi_master,(SLAVE)mem2.s2) 1 2 1 640
+preplace netloc FAN_OUT<net_container>soc</net_container>(SLAVE)mem1.reset1,(MASTER)clk.clk_reset,(SLAVE)mem2.reset1) 1 1 2 270 270 660
+preplace netloc EXPORT<net_container>soc</net_container>(SLAVE)soc.reset,(SLAVE)clk.clk_in_reset) 1 0 1 NJ
+preplace netloc EXPORT<net_container>soc</net_container>(SLAVE)hps.memory,(SLAVE)soc.memory) 1 0 2 NJ 180 NJ
+preplace netloc EXPORT<net_container>soc</net_container>(SLAVE)clk.clk_in,(SLAVE)soc.clk) 1 0 1 NJ
+preplace netloc FAN_OUT<net_container>soc</net_container>(SLAVE)mem1.clk1,(SLAVE)mem2.clk1,(SLAVE)hps.f2h_sdram0_clock,(SLAVE)hps.h2f_lw_axi_clock,(MASTER)clk.clk,(SLAVE)hps.h2f_axi_clock,(SLAVE)hps.f2h_axi_clock) 1 1 2 290 250 620
 levelinfo -pg 1 0 60 800
 levelinfo -hier soc 70 100 430 710 790

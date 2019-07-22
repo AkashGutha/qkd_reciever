@@ -5,14 +5,14 @@
 `timescale 1 ps / 1 ps
 module soc (
 		input  wire        clk_clk,            //     clk.clk
-		input  wire [10:0] mem1_s1_address,    // mem1_s1.address
+		input  wire [12:0] mem1_s1_address,    // mem1_s1.address
 		input  wire        mem1_s1_clken,      //        .clken
 		input  wire        mem1_s1_chipselect, //        .chipselect
 		input  wire        mem1_s1_write,      //        .write
 		output wire [15:0] mem1_s1_readdata,   //        .readdata
 		input  wire [15:0] mem1_s1_writedata,  //        .writedata
 		input  wire [1:0]  mem1_s1_byteenable, //        .byteenable
-		input  wire [10:0] mem2_s1_address,    // mem2_s1.address
+		input  wire [12:0] mem2_s1_address,    // mem2_s1.address
 		input  wire        mem2_s1_clken,      //        .clken
 		input  wire        mem2_s1_chipselect, //        .chipselect
 		input  wire        mem2_s1_write,      //        .write
@@ -76,14 +76,14 @@ module soc (
 	wire         hps_h2f_axi_master_rvalid;            // mm_interconnect_0:hps_h2f_axi_master_rvalid -> hps:h2f_RVALID
 	wire         mm_interconnect_0_mem1_s2_chipselect; // mm_interconnect_0:mem1_s2_chipselect -> mem1:chipselect2
 	wire  [31:0] mm_interconnect_0_mem1_s2_readdata;   // mem1:readdata2 -> mm_interconnect_0:mem1_s2_readdata
-	wire   [9:0] mm_interconnect_0_mem1_s2_address;    // mm_interconnect_0:mem1_s2_address -> mem1:address2
+	wire  [11:0] mm_interconnect_0_mem1_s2_address;    // mm_interconnect_0:mem1_s2_address -> mem1:address2
 	wire   [3:0] mm_interconnect_0_mem1_s2_byteenable; // mm_interconnect_0:mem1_s2_byteenable -> mem1:byteenable2
 	wire         mm_interconnect_0_mem1_s2_write;      // mm_interconnect_0:mem1_s2_write -> mem1:write2
 	wire  [31:0] mm_interconnect_0_mem1_s2_writedata;  // mm_interconnect_0:mem1_s2_writedata -> mem1:writedata2
 	wire         mm_interconnect_0_mem1_s2_clken;      // mm_interconnect_0:mem1_s2_clken -> mem1:clken2
 	wire         mm_interconnect_0_mem2_s2_chipselect; // mm_interconnect_0:mem2_s2_chipselect -> mem2:chipselect2
 	wire  [31:0] mm_interconnect_0_mem2_s2_readdata;   // mem2:readdata2 -> mm_interconnect_0:mem2_s2_readdata
-	wire   [9:0] mm_interconnect_0_mem2_s2_address;    // mm_interconnect_0:mem2_s2_address -> mem2:address2
+	wire  [11:0] mm_interconnect_0_mem2_s2_address;    // mm_interconnect_0:mem2_s2_address -> mem2:address2
 	wire   [3:0] mm_interconnect_0_mem2_s2_byteenable; // mm_interconnect_0:mem2_s2_byteenable -> mem2:byteenable2
 	wire         mm_interconnect_0_mem2_s2_write;      // mm_interconnect_0:mem2_s2_write -> mem2:write2
 	wire  [31:0] mm_interconnect_0_mem2_s2_writedata;  // mm_interconnect_0:mem2_s2_writedata -> mem2:writedata2
